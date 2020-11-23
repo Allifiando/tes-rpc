@@ -1,0 +1,28 @@
+syntax = "proto3";
+option go_package = ".;common";
+package common;
+
+message DataGetUser {
+    int64 id = 1;    
+    string email = 2;    
+    string pin = 3;
+}
+
+message RequestGetToken{    
+    string token = 1;    
+}
+
+message RequestGetPin{    
+    string token = 1;    
+    string pin = 2; 
+}
+
+message ApiResponse{
+    DataGetUser data = 1;
+    string message = 2;
+}
+
+service CommonService {
+    rpc GetBearer (RequestGetToken) returns (ApiResponse);
+    rpc GetPin (RequestGetPin) returns (ApiResponse);
+}
